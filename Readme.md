@@ -3,12 +3,12 @@ Redis Raw Mode
 
 This package monkey patches [node-redis](https://github.com/mranney/node_redis) to support writing raw commands to Redis. This is extremely useful in cases when you want to work with the native [redis command protocol](http://redis.io/topics/protocol), without invoking the penalties for parsing the commands.
 
-Useful for low level applications like proxies. It is use in the [Redis-Proxy](https://github.com/sreeix/redis-proxy).
+Useful for low level applications like proxies. It is used in the [Redis-Proxy](https://github.com/sreeix/redis-proxy).
 
 Usage
 ======
 
-`require('raw-redis')`
+`require('node-redis-raw')`
 
 The only public API it adds to the redis client API is `sendRaw`
 
