@@ -21,13 +21,14 @@ It is used as following
      supportRaw = require('node-redis-raw')
 `
 
-`var cl = r.createClient()
- supportRawOn(cl)
+` supportRawOn(r)
 `
 
 Once this is done, then you can do the following to SET mykey's value to myvalue
 
-`cl.sendRaw("*3\r\n$3\r\nSET\r\n$5\r\nmykey\r\n$7\r\nmyvalue\r\n", function(err, res) {console.log(res);});`
+`
+var cl = r.createClient();
+cl.sendRaw("*3\r\n$3\r\nSET\r\n$5\r\nmykey\r\n$7\r\nmyvalue\r\n", function(err, res) {console.log(res);});`
 
 or
 
@@ -37,4 +38,4 @@ or
 Technical
 ==========
 
-It adds a new method SendRaw on the client, and overrides the data handling part to not send it to the redis protocol parser, but just passthrough to the appropriate client.
+It adds a new method SendRaw on the RedisClient prototype, and then overrides the data handling part to not send it to the redis protocol parser, but just passthrough to the appropriate client. It also manages the buffers in case of longer than one buffer size response. This implementation is still slightly hacky.
